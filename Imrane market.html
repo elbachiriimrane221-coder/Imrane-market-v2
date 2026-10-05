@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMRANE MARKET</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#f5ff7a;--bg:#08080a;--card:#111116;--card2:#18181f;--border:#1f1f28;--text:#fff;--muted:#777;--radius:20px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;transition:.4s}
+body.light{--bg:#f5f5f7;--card:#fff;--card2:#ececef;--border:#e5e5ea;--text:#111;--muted:#888}
+header{position:fixed;top:0;left:0;right:0;height:76px;background:rgba(8,8,10,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100;animation:hIn .8s}
+@keyframes hIn{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+.logo{font-weight:900;font-size:26px;letter-spacing:-1px;cursor:pointer}
+.logo span{color:var(--accent)}
+.btn{padding:11px 18px;border-radius:100px;border:none;font-weight:800;font-size:13px;cursor:pointer;transition:.35s}
+.btn-y{background:var(--accent);color:#111}
+.btn-g{background:var(--card2);color:var(--text);border:1px solid var(--border)}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+.search{max-width:1440px;margin:100px auto 0;padding:0 24px;display:flex;gap:12px}
+.search input{flex:1;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:100px;color:var(--text);font-size:14px}
+.grid{max-width:1440px;margin:0 auto;padding:20px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.45s;animation:cIn .6s both}
+@keyframes cIn{from{transform:translateY(20px) scale(.96);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+.card:hover{transform:translateY(-6px);border-color:#333}
+.thumb{height:180px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:18px;position:relative;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.price{position:absolute;top:10px;right:10px;background:var(--accent);color:#111;padding:6px 12px;border-radius:100px;font-weight:900;font-size:12px;z-index:2}
+.info{padding:14px}
+.cat{font-size:10px;letter-spacing:1px;color:var(--muted);font-weight:800}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(24px);display:none;align-items:center;justify-content:center;z-index:200;padding:18px}
+.modal.open{display:flex}
+.box{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:24px;width:100%;max-width:560px;max-height:92vh;overflow:auto;animation:pop .4s}
+@keyframes pop{from{transform:scale(.85)}to{transform:scale(1)}}
+.box input,.box select,.box textarea{width:100%;padding:12px;background:var(--bg);border:1px solid var(--border);border-radius:12px;color:var(--text);margin-top:10px}
+.set-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);font-size:13px}
+.switch{width:46px;height:26px;background:#222;border-radius:100px;position:relative;cursor:pointer}
+.switch.on{background:var(--accent)}
+.switch::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s}
+.switch.on::after{left:23px}
+.chips{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:8px 14px;border-radius:100px;border:1px solid var(--border);background:var(--card);font-size:12px;font-weight:700;cursor:pointer;transition:.3s}
+.chip.active,.chip:hover{background:var(--accent);color:#111;border-color:var(--accent)}
+.hero{max-width:1440px;margin:16px auto;padding:0 24px;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+@media(max-width:900px){.hero{grid-template-columns:1fr}}
+.banner{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:28px;padding:22px;position:relative;overflow:hidden;animation:float 6s infinite ease-in-out}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.banner::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 30%,var(--accent),transparent 60%);opacity:.1;animation:rot 18s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" id="logo">IMRANE MAEKET<span>.</span></div>
+<div style="display:flex;gap:8px">
+<button class="btn btn-g" id="hHome">Home</button>
+<button class="btn btn-g" id="hSell">+ Sell</button>
+<button class="btn btn-g" id="hOrders">Orders</button>
+<button class="btn btn-g" id="hSettings">settings</button>
+<button class="btn btn-y" id="hCart">Cart (0)</button>
+</div>
+</header>
+
+<div class="search">
+<input id="searchInput" placeholder="Search real products from people...">
+<button class="btn btn-y" id="searchBtn">Search</button>
+<button class="btn btn-g" id="addBtn">+ Add a Product</button>
+</div>
+
+<div class="chips" style="margin-top:12px">
+<div class="chip active" data-cat="all">All</div>
+<div class="chip" data-cat="tech">Tech</div>
+<div class="chip" data-cat="fashion">Fashion</div>
+<div class="chip" data-cat="home">Home</div>
+<div class="chip" data-cat="art">Art</div>
+<div class="chip" data-cat="Gaming">Gaming</div>
+<div class="chip" data-cat="Anime">Anime</div>
+<div class="chip" data-cat="Other">Other</div> 
+</>
+
+<section class="hero">
+<div class="banner">
+<div style="position:relative;z-index:1">
+<div style="font-size:11px;color:var(--muted);letter-spacing:1px"> MARKET — PEOPLE POWERED</div>
+<div style="font-size:26px;font-weight:900;margin-top:6px" id="bannerCount">0 products — be first to sell</div>
+<div style="display:flex;gap:8px;margin-top:14px">
+<button class="btn btn-y" id="bannerSell">+ Sell Your Product</button>
+<button class="btn btn-g" id="bannerSet">Settings</button>
+</div>
+</div>
+</div>
+<div class="banner">
+<div style="position:relative;z-index:1">
+<div style="font-size:11px;color:var(--muted)">HOW IT WORKS</div>
+<div style="font-size:16px;font-weight:800;margin-top:6px">1. Sell → Upload image + price<br>2. Buy → Email + PayPal<br>3. Deploy to Google</div>
+<button class="btn btn-g" id="howDeploy" style="margin-top:12px">How to Deploy →</button>
+</div>
+</div>
+</section>
+
+<div class="grid" id="productGrid"></div>
+<div id="empty" style="max-width:1440px;margin:40px auto;padding:0 24px;text-align:center;color:var(--muted);display:none">
+<div style="font-size:48px">📦</div>
+<div style="font-size:22px;font-weight:900;margin-top:10px;color:var(--text)">No products yet</div>
+<div style="margin-top:6px">Be first — click + Sell</div>
+</div>
+
+<footer style="border-top:1px solid var(--border);padding:28px 24px;max-width:1440px;margin:40px auto 0;display:flex;justify-content:space-between;color:var(--muted);font-size:11px;flex-wrap:wrap;gap:10px">
+<div id="footTxt">© 2026 IMRANE COMOANY </div>
+<div style="display:flex;gap:8px">
+<button class="btn btn-g" id="footTop">Top ↑</button>
+<button class="btn btn-g" id="footSettings">Settings</button>
+</div>
+</footer>
+
+<div class="modal" id="buyModal"><div class="box"><div style="display:flex;justify-content:space-between"><h3 id="buyTitle">Buy</h3><button class="btn btn-g" id="buyX">✕</button></div><div id="buyImg" style="height:180px;background:var(--card2);border-radius:14px;margin-top:12px;overflow:hidden"></div><input id="buyEmail" placeholder="Your email for seller contact"><input id="buyPhone" placeholder="Phone / WhatsApp"><div style="margin-top:10px;color:var(--muted);font-size:12px" id="buyInfo"></div><button class="btn btn-y" id="buyOk" style="width:100%;margin-top:12px">Contact Seller & Buy →</button></div></div>
+
+<div class="modal" id="sellModal"><div class="box"><div style="display:flex;justify-content:space-between"><h3>Selle Product</h3><button class="btn btn-g" id="sellX">✕</button></div>
+<input id="sellName" placeholder="Product name (real)">
+<input id="sellPrice" type="number" placeholder="Price">
+<select id="sellCat"><option value="tech">Tech</option><option value="fashion">Fashion</option><option value="home">Home</option><option value="art">Art</option><option value="other">Other</option></select>
+<input type="file" id="sellFile" accept="image/*">
+<div id="preview" style="height:140px;background:var(--card2);border-radius:12px;margin-top:10px;display:flex;align-items:center;justify-content:center;color:var(--muted)">Image preview (optional)</div>
+<textarea id="sellDesc" placeholder="description, condition, location..."></textarea>
+<input id="sellContact" placeholder="Your WhatsApp / Email (for buyers)">
+<!-- الزر المصلح فقط -->
+<button class="btn btn-y" id="sellOk" type="button" style="width:100%;margin-top:12px">Publish Your Product →</button>
+</div></div>
+
+<div class="modal" id="setModal"><div class="box" style="border-color:var(--accent)"><div style="display:flex;justify-content:space-between"><h3> Settings</h3><button class="btn btn-g" id="setX">✕</button></div><div style="margin-top:12px"><div class="set-row"><span>Dark / Light</span><div class="switch on" id="modeSw"></div></div><div class="set-row"><span>Color</span><select id="setColor" style="width:130px;margin:0"><option value="#f5ff7a">Yellow</option><option value="#a78bfa">Purple</option><option value="#22d3ee">Cyan</option><option value="#fb7185">Pink</option><option value="#4ade80">Green</option></select></div><div class="set-row"><span>Language</span><select id="setLang" style="width:130px;margin:0"><option value="en">English</option><option value="ar">العربية</option><option value="fr">Français</option></select></div><div class="set-row"><span>Site Name</span><input id="setName" value="MARKET" style="width:130px;margin:0"></div><div class="set-row"><span>Currency</span><select id="setCurr" style="width:130px;margin:0"><option value="$">$</option><option value="€">€</option><option value="MAD">MAD</option></select></div><div class="set-row"><span>Radius</span><select id="setRadius" style="width:130px;margin:0"><option value="20px">Soft</option><option value="12px">Sharp</option><option value="28px">Extra</option></select></div><div class="set-row"><span>PayPal for all</span><input id="setPaypal" placeholder="paypal.me/you" style="width:150px;margin:0"></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px"><button class="btn btn-y" id="setSave">Save</button><button class="btn btn-g" id="setReset">Reset</button></div></div></div>
+
+<div class="modal" id="deployModal"><div class="box"><div style="display:flex;justify-content:space-between"><h3>Deploy to Google</h3><button class="btn btn-g" id="deployX">✕</button></div><div style="margin-top:12px;color:var(--muted);font-size:13px;line-height:1.6">I dont know </div><button class="btn btn-y" id="deployOk" style="width:100%;margin-top:12px">Got it</button></div></div>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+const $=id=>document.getElementById(id);
+let cfg=JSON.parse(localStorage.getItem('marketRealCfg')||'{"name":"IMRANE MARKET","color":"#f5ff7a","curr":"$","lang":"en","mode":"dark","paypal":"","radius":"20px"}');
+let products=JSON.parse(localStorage.getItem('marketRealProducts')||'[]');
+let cart=0;
+let currentImg='';
+
+function apply(){
+document.documentElement.style.setProperty('--accent',cfg.color);
+document.documentElement.style.setProperty('--radius',cfg.radius);
+$('logo').innerHTML=cfg.name+'<span>.</span>';
+$('footTxt').innerText='BY IMRANE EL BACHIRI ';
+document.body.classList.toggle('light',cfg.mode==='light');
+$('setName').value=cfg.name;
+$('setColor').value=cfg.color;
+$('setCurr').value=cfg.curr;
+$('setLang').value=cfg.lang;
+$('setPaypal').value=cfg.paypal;
+$('setRadius').value=cfg.radius;
+$('modeSw').classList.toggle('on',cfg.mode==='dark');
+render();
+}
+
+function render(filter='all',q=''){
+const grid=$('productGrid');
+const empty=$('empty');
+grid.innerHTML='';
+let list=products.filter(p=>{
+let okCat=filter==='all'||p.cat===filter;
+let okQ=!q||p.name.toLowerCase().includes(q.toLowerCase());
+return okCat&&okQ;
+});
+if(list.length===0){ empty.style.display='block'; $('bannerCount').innerText='0 products — be first'; $('hCart').innerText='Cart ('+cart+')'; return; }
+empty.style.display='none';
+list.forEach((p,i)=>{
+let d=document.createElement('div');
+d.className='card';
+d.style.animationDelay=(i*0.04)+'s';
+let imgHtml=p.img?`<img src="${p.img}">`:`<div style="font-size:42px">📦</div>`;
+d.innerHTML=`<div class="thumb">${imgHtml}<div class="price">${cfg.curr}${p.price}</div></div><div class="info"><div class="cat">${p.cat.toUpperCase()} • ${p.contact||''}</div><div style="font-weight:800;margin-top:4px">${p.name}</div><div style="color:var(--muted);font-size:12px;margin-top:4px">${p.desc||''}</div><div style="display:flex;gap:6px;margin-top:10px"><button class="btn btn-y buyBtn" style="flex:1">Buy</button><button class="btn btn-g delBtn" style="flex:1">Delete</button></div></div>`;
+grid.appendChild(d);
+d.querySelector('.buyBtn').onclick=()=>{
+$('buyTitle').innerText=p.name+' - '+cfg.curr+p.price;
+$('buyImg').innerHTML=p.img?`<img src="${p.img}" style="width:100%;height:100%;object-fit:cover">`:'';
+$('buyInfo').innerText='Seller: '+(p.contact||'No contact');
+$('buyModal').classList.add('open');
+};
+d.querySelector('.delBtn').onclick=()=>{
+if(confirm('Delete?')){ products=products.filter(x=>x!==p); localStorage.setItem('marketRealProducts',JSON.stringify(products)); render(filter,q); }
+};
+});
+$('bannerCount').innerText=list.length+' real products from real people';
+$('hCart').innerText='Cart ('+cart+')';
+}
+
+$('sellFile').onchange=(e)=>{
+let file=e.target.files[0];
+if(!file){ currentImg=''; $('preview').innerHTML='Image preview (optional)'; return; }
+let reader=new FileReader();
+reader.onload=ev=>{
+currentImg=ev.target.result;
+$('preview').innerHTML=`<img src="${currentImg}" style="width:100%;height:100%;object-fit:cover;border-radius:12px">`;
+};
+reader.readAsDataURL(file);
+};
+
+// ===== كل الأزرار =====
+$('hHome').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+$('hSell').onclick=()=>$('sellModal').classList.add('open');
+$('hOrders').onclick=()=>alert('Orders: '+cart);
+$('hSettings').onclick=()=>$('setModal').classList.add('open');
+$('hCart').onclick=()=>alert('Cart: '+cart);
+$('searchBtn').onclick=()=>render(document.querySelector('.chip.active').dataset.cat,$('searchInput').value);
+$('searchInput').oninput=()=>render(document.querySelector('.chip.active').dataset.cat,$('searchInput').value);
+$('addBtn').onclick=()=>$('sellModal').classList.add('open');
+$('bannerSell').onclick=()=>$('sellModal').classList.add('open');
+$('bannerSet').onclick=()=>$('setModal').classList.add('open');
+$('howDeploy').onclick=()=>$('deployModal').classList.add('open');
+$('footTop').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+$('footSettings').onclick=()=>$('setModal').classList.add('open');
+$('buyX').onclick=()=>$('buyModal').classList.remove('open');
+$('sellX').onclick=()=>$('sellModal').classList.remove('open');
+$('setX').onclick=()=>$('setModal').classList.remove('open');
+$('deployX').onclick=()=>$('deployModal').classList.remove('open');
+$('deployOk').onclick=()=>$('deployModal').classList.remove('open');
+$('buyOk').onclick=()=>{
+let e=$('buyEmail').value;
+if(!e.includes('@')){ alert('Email?'); return; }
+cart++;
+if(cfg.paypal) window.open(cfg.paypal,'_blank');
+$('buyModal').classList.remove('open');
+render();
+};
+
+// ===== الزر المصلح الوحيد — الآن يعمل 100% =====
+$('sellOk').onclick=()=>{
+console.log('Publish clicked');
+let n=$('sellName').value.trim();
+let pr=$('sellPrice').value.trim();
+if(!n){ alert('اكتب اسم المنتج'); return; }
+if(!pr){ alert('اكتب السعر'); return; }
+let priceNum=parseInt(pr);
+if(isNaN(priceNum)){ alert('السعر رقم'); return; }
+let newP={
+name:n,
+price:priceNum,
+cat:$('sellCat').value,
+desc:$('sellDesc').value,
+contact:$('sellContact').value,
+img:currentImg||'',
+time:Date.now()
+};
+products.unshift(newP);
+localStorage.setItem('marketRealProducts',JSON.stringify(products));
+$('sellModal').classList.remove('open');
+$('sellName').value='';
+$('sellPrice').value='';
+$('sellDesc').value='';
+$('sellContact').value='';
+$('preview').innerHTML='Image preview (optional)';
+currentImg='';
+render();
+alert('تم نشر المنتج بنجاح نتمنا توفيق ');
+};
+
+$('modeSw').onclick=function(){ cfg.mode=cfg.mode==='dark'?'light':'dark'; localStorage.setItem('marketRealCfg',JSON.stringify(cfg)); apply(); };
+$('setSave').onclick=()=>{
+cfg.name=$('setName').value||'IMRANE MARKET';
+cfg.color=$('setColor').value;
+cfg.curr=$('setCurr').value;
+cfg.lang=$('setLang').value;
+cfg.paypal=$('setPaypal').value||'';
+cfg.radius=$('setRadius').value;
+localStorage.setItem('marketRealCfg',JSON.stringify(cfg));
+apply();
+$('setModal').classList.remove('open');
+};
+$('setReset').onclick=()=>{ localStorage.removeItem('market by imrane el bachiri'); cfg={name:'MARKET',color:'#f5ff7a',curr:'$',lang:'en',mode:'dark',paypal:'',radius:'20px'}; apply(); };
+document.querySelectorAll('.chip').forEach(ch=>{
+ch.onclick=()=>{
+document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+ch.classList.add('active');
+render(ch.dataset.cat,$('searchInput').value);
+};
+});
+['buyModal','sellModal','setModal','deployModal'].forEach(id=>{ $(id).onclick=(e)=>{ if(e.target.id===id) e.target.classList.remove('open'); }; });
+
+apply();
+});
+</script>
+</body>
+</html>
